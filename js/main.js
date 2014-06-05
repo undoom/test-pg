@@ -34,6 +34,7 @@ var app = {
     },
 
     accelerometerSuccess:function(acceleration){
+        alert('ok');
         $("#motion-infos").text('Acceleration X: ' + acceleration.x + '\n' +
           'Acceleration Y: ' + acceleration.y + '\n' +
           'Acceleration Z: ' + acceleration.z + '\n' +
@@ -97,7 +98,7 @@ var app = {
         }else{
             app.showAlert("Accelerometre non supporté","Erreur");
         }
-    }
+    },
 };
 
 function onDeviceReady(){
