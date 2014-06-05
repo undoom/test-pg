@@ -37,7 +37,7 @@ var app = {
                          }
         navigator.camera.getPicture(
             function(imageData){
-                $(self).after("<img src='data:image/jpg;base64,"+imageData+"'>");
+                $(self).after("<img src='data:image/jpg;base64,"+imageData+"' style='max-width:100%'>");
             },function(){
                 app.showAlert('Erreur à la récupération e l\'image', 'Erreur');
             },
@@ -67,3 +67,12 @@ var app = {
 };
 
 app.initialize();
+
+$(document).ready(function(){
+    if(navigator.splashscreen){
+        navigator.splashscreen.show();
+        setTiemout(function(){
+            navigator.splashscreen.hide();
+        },2000);
+    }
+})
