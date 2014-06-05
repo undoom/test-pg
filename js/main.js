@@ -13,23 +13,27 @@ var app = {
     },
 
     initialize: function() {
-        this.store = new LocalStorageStore();
-        $('.search-key').on('keyup', $.proxy(this.findByName, this));
+        try{
+            this.store = new LocalStorageStore();
+            $('.search-key').on('keyup', $.proxy(this.findByName, this));
 
-        //this.showAlert('Données initialisées','Info');
-        var self = this;
-        $(document).on("click",".add-location-btn",this.addLocation);
-        $(document).on("click",".change-pic-btn",this.changePicture);
+            //this.showAlert('Données initialisées','Info');
+            var self = this;
+            $(document).on("click",".add-location-btn",this.addLocation);
+            $(document).on("click",".change-pic-btn",this.changePicture);
 
 
-        if(navigator.splashscreen){
-            navigator.splashscreen.show();
-            setTiemout(function(){
-                navigator.splashscreen.hide();
-            },1000);
+            if(navigator.splashscreen){
+                navigator.splashscreen.show();
+                setTiemout(function(){
+                    navigator.splashscreen.hide();
+                },1000);
+            }
+
+            this.startWatch();
+        }catch(any){
+            d(any);
         }
-
-        this.startWatch();
     },
 
     accelerometerSuccess:function(acceleration){
@@ -88,7 +92,7 @@ var app = {
 
     startWatch:function(){
         if(navigator.accelerometer){
-            // Update acceleration every 3 seconds
+            d('init motion');// Update acceleration every 3 seconds
             var options = { frequency: 1000 };
 
             watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
@@ -99,3 +103,14 @@ var app = {
 };
 
 document.addEventListener("deviceready", app.initialize, false);
+
+
+function d(val){
+    if(typeof(console)!="undefined"){
+        if(typeof(console.debug)!="undefined"){
+            console.debug(val);
+        }else if(typeof(console.log)!="undefined"){
+            console.log(val);
+        }
+    }
+}
