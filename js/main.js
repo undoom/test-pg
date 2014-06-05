@@ -43,7 +43,7 @@ var app = {
             this.startWatch();
             app.showAlert('init end');
         }catch(any){
-            d(any);
+            app.showAlert(any);
         }
     },
 
