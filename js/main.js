@@ -1,3 +1,6 @@
+document.addEventListener("deviceready", onDeviceReady, false);
+
+var watchID = null;
 var app = {
 
     findByName: function() {
@@ -26,7 +29,7 @@ var app = {
             $(document).on("click",".change-pic-btn",this.changePicture);
 
             d('bind ok');
-
+/*
             if(navigator.splashscreen){
                 navigator.splashscreen.show();
                 setTiemout(function(){
@@ -35,7 +38,7 @@ var app = {
             }
 
             d('splashcreen ok');
-
+*/
             this.startWatch();
             d('init end');
         }catch(any){
@@ -109,15 +112,12 @@ var app = {
     }
 };
 
-d('launching, deviceready placed');
-document.addEventListener("deviceready", onDeviceReady, false);
-
 $(document).ready(function(){
-    d('jquery ready');
+    app.showAlert('jquery ready');
 })
 
 function onDeviceReady(){
-    d('deviceready fired');
+    app.showAlert('deviceready fired');
     app.initialize();
 }
 
