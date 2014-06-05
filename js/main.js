@@ -109,8 +109,17 @@ var app = {
     }
 };
 
-document.addEventListener("deviceready", app.initialize, false);
+d('launching, deviceready placed');
+document.addEventListener("deviceready", onDeviceReady, false);
 
+$(document).ready(function(){
+    d('jquery ready');
+})
+
+function onDeviceReady(){
+    d('deviceready fired');
+    app.initialize();
+}
 
 function d(val){
     if(typeof(console)!="undefined"){
