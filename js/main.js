@@ -94,7 +94,7 @@ var app = {
             app.showAlert('init motion');// Update acceleration every 3 seconds
             var options = { frequency: 1000 };
 
-            watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess, accelerometerError, options);
+            watchID = navigator.accelerometer.watchAcceleration(this.accelerometerSuccess, this.accelerometerError, options);
         }else{
             app.showAlert("Accelerometre non supporté","Erreur");
         }
