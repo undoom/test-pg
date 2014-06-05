@@ -1,4 +1,3 @@
-alert('deviceready set');
 document.addEventListener("deviceready", onDeviceReady, false);
 
 var watchID = null;
@@ -18,9 +17,7 @@ var app = {
 
     initialize: function() {
         try{
-            app.showAlert('init start');
             this.store = new LocalStorageStore();
-            app.showAlert('store ok');
 
             $('.search-key').on('keyup', $.proxy(this.findByName, this));
 
@@ -29,19 +26,8 @@ var app = {
             $(document).on("click",".add-location-btn",this.addLocation);
             $(document).on("click",".change-pic-btn",this.changePicture);
 
-            app.showAlert('bind ok');
-/*
-            if(navigator.splashscreen){
-                navigator.splashscreen.show();
-                setTiemout(function(){
-                    navigator.splashscreen.hide();
-                },1000);
-            }
 
-            d('splashcreen ok');
-*/
             this.startWatch();
-            app.showAlert('init end');
         }catch(any){
             app.showAlert(any);
         }
@@ -102,23 +88,19 @@ var app = {
     },
 
     startWatch:function(){
+        app.showAlert("try init motion");
         if(navigator.accelerometer){
-            d('init motion');// Update acceleration every 3 seconds
+            app.showAlert('init motion');// Update acceleration every 3 seconds
             var options = { frequency: 1000 };
 
-            watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+            watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess, accelerometerError, options);
         }else{
             app.showAlert("Accelerometre non supporté","Erreur");
         }
     }
 };
 
-$(document).ready(function(){
-    app.showAlert('jquery ready');
-})
-
 function onDeviceReady(){
-    app.showAlert('deviceready fired');
     app.initialize();
 }
 
