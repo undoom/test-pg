@@ -1,3 +1,4 @@
+alert('deviceready set');
 document.addEventListener("deviceready", onDeviceReady, false);
 
 var watchID = null;
@@ -17,9 +18,9 @@ var app = {
 
     initialize: function() {
         try{
-            d('init start');
+            app.showAlert('init start');
             this.store = new LocalStorageStore();
-            d('store ok');
+            app.showAlert('store ok');
 
             $('.search-key').on('keyup', $.proxy(this.findByName, this));
 
@@ -28,7 +29,7 @@ var app = {
             $(document).on("click",".add-location-btn",this.addLocation);
             $(document).on("click",".change-pic-btn",this.changePicture);
 
-            d('bind ok');
+            app.showAlert('bind ok');
 /*
             if(navigator.splashscreen){
                 navigator.splashscreen.show();
@@ -40,7 +41,7 @@ var app = {
             d('splashcreen ok');
 */
             this.startWatch();
-            d('init end');
+            app.showAlert('init end');
         }catch(any){
             d(any);
         }
