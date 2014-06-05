@@ -28,6 +28,7 @@ var app = {
             app.showAlert("Camera non supportée","Erreur");
             return;
         }
+        var self = this;
         var options =   {
                             quality:50,
                             destinationType: Camera.DestinationType.DATA_URL,
@@ -36,7 +37,7 @@ var app = {
                          }
         navigator.camera.getPicture(
             function(imageData){
-                $(this).after("<img src='data:image/jpg;base64,"+imageData+"'>");
+                $(self).after("<img src='data:image/jpg;base64,"+imageData+"'>");
             },function(){
                 app.showAlert('Erreur à la récupération e l\'image', 'Erreur');
             },
