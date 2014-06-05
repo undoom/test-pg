@@ -36,7 +36,7 @@ var app = {
                          }
         navigator.camera.getPicture(
             function(imageData){
-                $(this).after("<img src='data:images/jpeg;base64,"+imageData+"'>");
+                $(this).after("<img src='data:image/jpeg;base64,"+imageData+"'>");
             },function(){
                 app.showAlert('Erreur à la récupération e l\'image', 'Erreur');
             },
