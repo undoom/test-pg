@@ -33,17 +33,6 @@ var app = {
         }
     },
 
-    accelerometerSuccess:function(acceleration){
-        alert('ok');
-        $("#motion-infos").text('Acceleration X: ' + acceleration.x + '\n' +
-          'Acceleration Y: ' + acceleration.y + '\n' +
-          'Acceleration Z: ' + acceleration.z + '\n' +
-          'Timestamp: '      + acceleration.timestamp + '\n');
-    },
-
-    accelerometerError:function(event){
-        $("#motion-infos").text('Erreur');
-    },
 
     changePicture:function(event){
         event.preventDefault();
@@ -89,9 +78,7 @@ var app = {
     },
 
     startWatch:function(){
-        app.showAlert("try init motion");
         if(navigator.accelerometer){
-            app.showAlert('init motion');// Update acceleration every 3 seconds
             var options = { frequency: 1000 };
 
             watchID = navigator.accelerometer.watchAcceleration(this.accelerometerSuccess, this.accelerometerError, options);
@@ -100,6 +87,17 @@ var app = {
         }
     },
 };
+
+function accelerometerSuccess(acceleration){
+    $("#motion-infos").text('Acceleration X: ' + acceleration.x + '\n' +
+      'Acceleration Y: ' + acceleration.y + '\n' +
+      'Acceleration Z: ' + acceleration.z + '\n' +
+      'Timestamp: '      + acceleration.timestamp + '\n');
+}
+
+function accelerometerError(){
+    $("#motion-infos").text('Erreur');
+}
 
 function onDeviceReady(){
     app.initialize();
