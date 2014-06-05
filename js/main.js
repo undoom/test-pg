@@ -81,7 +81,7 @@ var app = {
         if(navigator.accelerometer){
             var options = { frequency: 1000 };
 
-            watchID = navigator.accelerometer.watchAcceleration(this.accelerometerSuccess, this.accelerometerError, options);
+            watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess, accelerometerError, options);
         }else{
             app.showAlert("Accelerometre non supporté","Erreur");
         }
