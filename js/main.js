@@ -26,6 +26,13 @@ var app = {
         }else{
             app.showAlert("Accelerometre non supporté","Erreur");
         }
+
+        if(navigator.splashscreen){
+            navigator.splashscreen.show();
+            setTiemout(function(){
+                navigator.splashscreen.hide();
+            },2000);
+        }
     },
 
     accelerometerSuccess:function(acceleration){
@@ -84,12 +91,3 @@ var app = {
 };
 
 document.addEventListener("deviceready", app.initialize, false);
-
-$(document).ready(function(){
-    if(navigator.splashscreen){
-        navigator.splashscreen.show();
-        setTiemout(function(){
-            navigator.splashscreen.hide();
-        },2000);
-    }
-})
