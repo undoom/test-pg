@@ -14,7 +14,10 @@ var app = {
 
     initialize: function() {
         try{
+            d('init start');
             this.store = new LocalStorageStore();
+            d('store ok');
+
             $('.search-key').on('keyup', $.proxy(this.findByName, this));
 
             //this.showAlert('Données initialisées','Info');
@@ -22,6 +25,7 @@ var app = {
             $(document).on("click",".add-location-btn",this.addLocation);
             $(document).on("click",".change-pic-btn",this.changePicture);
 
+            d('bind ok');
 
             if(navigator.splashscreen){
                 navigator.splashscreen.show();
@@ -30,7 +34,10 @@ var app = {
                 },1000);
             }
 
+            d('splashcreen ok');
+
             this.startWatch();
+            d('init end');
         }catch(any){
             d(any);
         }
@@ -86,7 +93,7 @@ var app = {
         if(navigator.notification){
             navigator.notification.alert(message, null, title, 'OK');
         }else{
-            alert(title?(title+" : "+message) : message);
+            d(title?(title+" : "+message) : message);
         }
     },
 
