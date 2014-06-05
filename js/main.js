@@ -21,29 +21,26 @@ var app = {
         $(document).on("click",".add-location-btn",this.addLocation);
         $(document).on("click",".change-pic-btn",this.changePicture);
 
-        if(navigator.accelerometer){
-            navigator.accelerometer.getCurrentAcceleration(this.accelerometerSuccess, this.accelerometerError);
-        }else{
-            app.showAlert("Accelerometre non supporté","Erreur");
-        }
 
         if(navigator.splashscreen){
             navigator.splashscreen.show();
             setTiemout(function(){
                 navigator.splashscreen.hide();
-            },2000);
+            },1000);
         }
+
+        this.startWatch();
     },
 
     accelerometerSuccess:function(acceleration){
-        alert('Acceleration X: ' + acceleration.x + '\n' +
+        $("#motion-infos").text('Acceleration X: ' + acceleration.x + '\n' +
           'Acceleration Y: ' + acceleration.y + '\n' +
           'Acceleration Z: ' + acceleration.z + '\n' +
           'Timestamp: '      + acceleration.timestamp + '\n');
     },
 
     accelerometerError:function(event){
-
+        $("#motion-infos").text('Erreur');
     },
 
     changePicture:function(event){
@@ -88,6 +85,17 @@ var app = {
             alert(title?(title+" : "+message) : message);
         }
     },
+
+    startWatch:function(){
+        if(navigator.accelerometer){
+            // Update acceleration every 3 seconds
+            var options = { frequency: 1000 };
+
+            watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+        }else{
+            app.showAlert("Accelerometre non supporté","Erreur");
+        }
+    }
 };
 
 document.addEventListener("deviceready", app.initialize, false);
