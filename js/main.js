@@ -16,7 +16,20 @@ var app = {
         this.store = new LocalStorageStore();
         $('.search-key').on('keyup', $.proxy(this.findByName, this));
 
-        this.showAlert('Données initialisées','Info');
+        //this.showAlert('Données initialisées','Info');
+        var self = this;
+        $(document).on("click",".add-location-btn",this.addLocation);
+    },
+
+    addLocation:function(event){
+        event.preventDefault();
+        navigator.geolocation.getCurrentPosition(
+            function(position){
+                app.showAlert(position.coords.latitude + ',' + position.coords.longitude,"Localisation");
+            },function(){
+                alert("Error getting location");
+            });
+        return false;
     },
 
     showAlert: function(message,title){
@@ -25,7 +38,7 @@ var app = {
         }else{
             alert(title?(title+" : "+message) : message);
         }
-    }
+    },
 };
 
 app.initialize();
