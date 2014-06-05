@@ -83,7 +83,7 @@ var app = {
     },
 };
 
-app.initialize();
+document.addEventListener("deviceready", app.initialize, false);
 
 $(document).ready(function(){
     if(navigator.splashscreen){
