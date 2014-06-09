@@ -25,8 +25,8 @@ var app = {
             var self = this;
             $(document).on("click",".add-location-btn",this.addLocation);
             $(document).on("click",".change-pic-btn",this.changePicture);
-            $(document).on("click",".notication .confirm",this.confirmNotification);
-            $(document).on("click",".notication .alert",this.alertNotification);
+            $(document).on("click",".notification .confirm",this.confirmNotification);
+            $(document).on("click",".notification .alert",this.alertNotification);
 
 
             this.startWatch();
@@ -39,6 +39,8 @@ var app = {
         e.preventDefault();
         if(navigator.notification){
             navigator.notification.alert('Message','titre');
+        }else{
+            app.showAlert('Notification native non supportée');
         }
     },
 
@@ -51,6 +53,8 @@ var app = {
                 'Partie terminée', //titre
                 'Restart,Exit' // Libellé boutons
             );
+        }else{
+            app.showAlert('Notification native non supportée');
         }
     },
 
@@ -136,3 +140,8 @@ function d(val){
         }
     }
 }
+/*
+setTimeout(function(){
+    onDeviceReady();
+},0);
+*/
