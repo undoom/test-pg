@@ -27,6 +27,8 @@ var app = {
             $(document).on("click",".change-pic-btn",this.changePicture);
             $(document).on("click",".notification .confirm",this.confirmNotification);
             $(document).on("click",".notification .alert",this.alertNotification);
+            $(document).on("click",".notification .beep",this.beepNotification);
+            $(document).on("click",".notification .vibrate",this.vibrateNotification);
 
 
             this.startWatch();
@@ -60,6 +62,24 @@ var app = {
 
     onConfirm:function(index){
         alert('Bouton pressé : '+index);
+    },
+
+    beepNotification:function(e){
+        e.preventDefault();
+        if(navigator.notification){
+            navigator.notification.beep(2);
+        }else{
+            app.showAlert('Notification native non supportée');
+        }
+    },
+
+    vibrateNotification:function(e){
+        e.preventDefault();
+        if(navigator.notification){
+            navigator.notification.vibrate(1000);
+        }else{
+            app.showAlert('Notification native non supportée');
+        }
     },
 
     changePicture:function(event){
@@ -117,10 +137,10 @@ var app = {
 };
 
 function accelerometerSuccess(acceleration){
-    $("#motion-infos").text('Acceleration X: ' + acceleration.x + '\n' +
-      'Acceleration Y: ' + acceleration.y + '\n' +
-      'Acceleration Z: ' + acceleration.z + '\n' +
-      'Timestamp: '      + acceleration.timestamp + '\n');
+    $("#motion-infos").text('Acceleration X: ' + acceleration.x + '<br>' +
+      'Acceleration Y: ' + acceleration.y + '<br>' +
+      'Acceleration Z: ' + acceleration.z + '<br>' +
+      'Timestamp: '      + acceleration.timestamp + '<br>');
 }
 
 function accelerometerError(){
