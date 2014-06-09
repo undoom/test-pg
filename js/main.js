@@ -25,6 +25,7 @@ var app = {
             var self = this;
             $(document).on("click",".add-location-btn",this.addLocation);
             $(document).on("click",".change-pic-btn",this.changePicture);
+            $(document).on("click",".notication .confirrm",this.confirmNotification);
 
 
             this.startWatch();
@@ -33,6 +34,20 @@ var app = {
         }
     },
 
+    confirmNotification:function(){
+        if(navigator.notification){
+            navigator.notification.confirm(
+                'Vous avez gagné', // message
+                app.onConfirm, // callback
+                'Partie terminée', //titre
+                'Restart,Exit' // Libellé boutons
+            );
+        }
+    },
+
+    onConfirm:function(index){
+        alert('Bouton pressé : '+index);
+    },
 
     changePicture:function(event){
         event.preventDefault();
