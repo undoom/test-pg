@@ -40,7 +40,7 @@ var app = {
         if(navigator.notification){
             navigator.notification.alert('Message','titre');
         }
-    }
+    },
 
     confirmNotification:function(e){
         e.preventDefault();
