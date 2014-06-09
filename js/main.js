@@ -25,7 +25,8 @@ var app = {
             var self = this;
             $(document).on("click",".add-location-btn",this.addLocation);
             $(document).on("click",".change-pic-btn",this.changePicture);
-            $(document).on("click",".notication .confirrm",this.confirmNotification);
+            $(document).on("click",".notication .confirm",this.confirmNotification);
+            $(document).on("click",".notication .alert",this.alertNotification);
 
 
             this.startWatch();
@@ -34,7 +35,15 @@ var app = {
         }
     },
 
-    confirmNotification:function(){
+    alertNotification:function(e){
+        e.preventDefault();
+        if(navigator.notification){
+            navigator.notification.alert('Message','titre');
+        }
+    }
+
+    confirmNotification:function(e){
+        e.preventDefault();
         if(navigator.notification){
             navigator.notification.confirm(
                 'Vous avez gagné', // message
