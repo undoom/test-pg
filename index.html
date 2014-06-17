@@ -6,6 +6,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+        <div data-role="page" id="homeNote">
+            <div data-role="header">
+                <h1>Liste des notes</h1>
+            </div>
+        
+            <div role="main" class="ui-content">
+                <ul id="listeNotes"></ul>
+                <a href="#addNote" data-role="button">Ajouter une note</a>
+            </div>
+        
+            <div data-role="footer">
+                <h4>Pied de page</h4>
+            </div>
+        </div>
+
+        <div data-role="page" id="addNote">
+            <div data-role="header">
+                <h1>Ajouter une notes</h1>
+            </div>
+        
+            <div role="main" class="ui-content">
+                <textarea id="noteContent"></textarea>
+                <a href="#" class="" data-role="button">Ajouter une photo</a>
+                <input type="checkbox" id="addGeoLoc"><label for="addGeoLoc">Ajout mon emplacement <span id="locOK"></span></label>
+                <input type="button" id="saveContent" value="Enregistrer">
+            </div>
+        
+            <div data-role="footer">
+                <h4>Pied de page</h4>
+            </div>
+        </div>
+
         <div data-role="page">
             <div data-role="header">
                 <h1>Page Title</h1>
@@ -30,16 +62,18 @@
                     <a href="#" class="beep" data-role="button">Beep</a>
                     <a href="#" class="vibrate" data-role="button">Vibre</a>
                 </div>
+
+                <a href="#homeNote" data-role="button">Gestion des notes</a>
             </div>
         
             <div data-role="footer">
                 <h4>Page Footer</h4>
             </div>
         </div>
+
         <script src="phonegap.js"></script>
         <script src="lib/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile.js"></script>
-        <script src="js/storage/ls-store.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
